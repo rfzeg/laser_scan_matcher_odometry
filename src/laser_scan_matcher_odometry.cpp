@@ -124,6 +124,14 @@ void LaserScanMatcherOdometry::initParams() {
     if (!nh_private_.getParam ("publish_pose", publish_pose_))
         publish_pose_ = true;
 
+    // Initial pose
+    if (!nh_private_.getParam ("initial_pose_x", initial_pose_x))
+        initial_pose_x = 0.0;
+    if (!nh_private_.getParam ("initial_pose_y", initial_pose_y))
+        initial_pose_y = 0.0;
+    if (!nh_private_.getParam ("initial_pose_a", initial_pose_a))
+        initial_pose_a = 0.0;
+
     if (!nh_private_.getParam ("alpha", alpha_))
         alpha_ = 1.0;
     if (!nh_private_.getParam ("beta", beta_))

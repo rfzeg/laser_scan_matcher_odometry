@@ -43,6 +43,8 @@ private:
     double vel_x_, vel_y_, vel_a_;  // simple velocity estimates
     double last_vel_x_, last_vel_y_, last_vel_a_;
 
+    // where the initial position estimate starts
+    double initial_pose_x, initial_pose_y, initial_pose_a;
 
     bool use_cloud_input_, use_imu_, use_odom_, publish_pose_;
 
@@ -88,6 +90,11 @@ private:
 
 
     void initParams();
+
+    // Initial pose of the robot (m,m,rad), in world coordinates
+    prev_ldp_scan_->true_pose[0] = initial_pose_x;
+    prev_ldp_scan_->true_pose[1] = initial_pose_y;
+    prev_ldp_scan_->true_pose[2] = initial_pose_a;
 
     void cloudCallback (const PointCloudT::ConstPtr& cloud);
     void scanCallback (const sensor_msgs::LaserScan::ConstPtr& scan_msg);
